@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Members {% endblock %}
+
+{% block content %}
+<div class="row">
+{% for member in members %}
+<div class="card col-md-4" style="width: 18rem;">
+  {% if member.profile %}
+  <img src= "{{member.profile.url}}" class="card-img-top" alt="..." width="100">
+  {% else %}
+    {% if member.gender == 'female' %}
+      <img src= "{% static 'members/female.png' %}" class="card-img-top" alt="...">
+    {% elif member.gender == 'male' %}
+      <img src= "{% static 'members/male.png' %}" class="card-img-top" alt="...">
+    {% endif %}
+  {% endif %}
+
+<div class="card-body">
+  <h5 class="card-title">{{ member.first_name }} {{member.last_name}} aka ({{member.nickname}})</h5>
+  <p class="card-text">{{ member.bio }}</p>
+  <a href= "{% url 'user_profile' member.nickname %}" class="btn btn-primary">Read more</a>
+  {{ MEDIA_URL }}
+</div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

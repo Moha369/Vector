@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block desc %} Hello World {% endblock %}
+
+{% block content %}
+{% for member in member %}
+  <p>{{member.first_name}} {{member.last_name}} aka {{member.nickname}}</p>
+{% endfor %}
+{% endblock %}
