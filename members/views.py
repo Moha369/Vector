@@ -30,7 +30,8 @@ def contact(request):
     form = ContactForm(request.POST or None)
     if form.is_valid():
         form.save()
-        form = form = ContactForm()
+    else:
+        form = ContactForm()
     context = {'form': form}
     return render(request, 'members/contact.html', context)
 
